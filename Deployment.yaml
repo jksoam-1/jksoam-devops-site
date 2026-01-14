@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jksoam-deployment
+  namespace: jksoam
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jksoam
+  template:
+    metadata:
+      labels:
+        app: jksoam
+    spec:
+      containers:
+        - name: jksoam-container
+          image: jksoam777/jksite1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
