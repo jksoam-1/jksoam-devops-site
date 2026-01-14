@@ -1,0 +1,218 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="devops-hero">
+    <h1>DevOps & Cloud Engineering ⚙️☁️</h1>
+    <p>
+        Automating infrastructure, scaling systems,<br>
+        and delivering cloud-native solutions with confidence.
+    </p>
+
+    <div class="cta">
+        <a href="/blogs/">Read DevOps Blogs</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(180deg, #f8fafc, #eef2ff);
+    }
+
+    /* HERO */
+    .devops-hero {
+        text-align: center;
+        padding: 90px 20px 60px;
+        background: radial-gradient(circle at top, #e0f2fe, #f8fafc 70%);
+    }
+
+    .devops-hero h1 {
+        font-size: 48px;
+        font-weight: 900;
+        color: #020617;
+        margin-bottom: 18px;
+        letter-spacing: 1px;
+    }
+
+    .devops-hero p {
+        font-size: 19px;
+        color: #334155;
+        line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta {
+        margin-top: 30px;
+    }
+
+    .cta a {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #2563eb, #4f46e5);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+        transition: all 0.3s ease;
+    }
+
+    .cta a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 35px rgba(37,99,235,0.5);
+    }
+
+    /* CATEGORY */
+    .category {
+        margin-top: 90px;
+        text-align: center;
+    }
+
+    .category h2 {
+        font-size: 34px;
+        margin-bottom: 10px;
+        color: #020617;
+    }
+
+    .category p {
+        color: #475569;
+        font-size: 17px;
+    }
+
+    /* GRID */
+    .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 35px;
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .stack-card {
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border-radius: 22px;
+        padding: 30px;
+        box-shadow: 0 25px 50px rgba(2,6,23,0.12);
+        transition: transform 0.35s, box-shadow 0.35s;
+    }
+
+    .stack-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 35px 70px rgba(2,6,23,0.2);
+    }
+
+    .stack-card h3 {
+        margin-top: 0;
+        font-size: 22px;
+        color: #1e40af;
+        margin-bottom: 12px;
+    }
+
+    .stack-card p {
+        font-size: 16px;
+        color: #334155;
+        line-height: 1.7;
+        margin: 0;
+    }
+</style>
+
+<!-- CORE DEVOPS -->
+<div class="category">
+    <h2>Core DevOps Stack</h2>
+    <p>Infrastructure, containers & automation fundamentals</p>
+</div>
+
+<div class="stack-grid">
+    <div class="stack-card">
+        <h3>Terraform</h3>
+        <p>Infrastructure as Code to build consistent, scalable and repeatable cloud environments.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Kubernetes</h3>
+        <p>Container orchestration for auto-scaling, high availability and resilient microservices.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Docker</h3>
+        <p>Containerization to ship applications reliably across environments.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Linux</h3>
+        <p>Strong foundation in server administration, networking and troubleshooting.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Python</h3>
+        <p>Automation, scripting and tooling to eliminate repetitive manual work.</p>
+    </div>
+</div>
+
+<!-- CI/CD -->
+<div class="category">
+    <h2>CI/CD & Automation</h2>
+    <p>From commit to production — fast and reliable delivery</p>
+</div>
+
+<div class="stack-grid">
+    <div class="stack-card">
+        <h3>GitHub Actions</h3>
+        <p>Event-driven CI/CD pipelines tightly integrated with GitHub repositories.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Azure DevOps</h3>
+        <p>Enterprise-grade pipelines, repos and release workflows.</p>
+    </div>
+</div>
+
+<!-- OBSERVABILITY -->
+<div class="category">
+    <h2>Observability & Monitoring</h2>
+    <p>Because you can’t fix what you can’t see</p>
+</div>
+
+<div class="stack-grid">
+    <div class="stack-card">
+        <h3>Datadog</h3>
+        <p>End-to-end monitoring across infrastructure, applications and cloud services.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Fluent Bit</h3>
+        <p>Lightweight log collection and forwarding at scale.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>OpenTelemetry</h3>
+        <p>Vendor-neutral observability for metrics, logs and distributed tracing.</p>
+    </div>
+</div>
+
+<!-- CLOUD -->
+<div class="category">
+    <h2>Cloud Platforms</h2>
+    <p>Multi-cloud mindset with production readiness</p>
+</div>
+
+<div class="stack-grid">
+    <div class="stack-card">
+        <h3>Microsoft Azure</h3>
+        <p>AKS, networking, security and enterprise cloud workloads.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>AWS</h3>
+        <p>Highly scalable compute, storage and networking services.</p>
+    </div>
+
+    <div class="stack-card">
+        <h3>Google Cloud Platform</h3>
+        <p>Cloud-native services with strong Kubernetes and data focus.</p>
+    </div>
+</div>
+
+{% endblock %}
