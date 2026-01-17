@@ -31,7 +31,7 @@ jobs:
         run: |
           docker build \
             -f django_site/Dockerfile \
-            -t jksaom777/pythonsite:${{ steps.vars.outputs.TAG }} .
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/pythonsite:${{ steps.vars.outputs.TAG }} .
 
       # 5️⃣ Install Trivy
       - name: Install Trivy
@@ -49,9 +49,9 @@ jobs:
           trivy image \
             --severity HIGH,CRITICAL \
             --no-progress \
-            jksaom777/pythonsite:${{ steps.vars.outputs.TAG }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/pythonsite:${{ steps.vars.outputs.TAG }}
 
       # 7️⃣ Push image
       - name: Push Docker image
         run: |
-          docker push jksaom777/pythonsite:${{ steps.vars.outputs.TAG }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/pythonsite:${{ steps.vars.outputs.TAG }}
