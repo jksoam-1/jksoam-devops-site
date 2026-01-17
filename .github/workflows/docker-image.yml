@@ -2,26 +2,40 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-
+    branches:
+      - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . -f django_site/Dockerfile -t jksaom777/pythonsite:$(date +%s)
-    - name: Login to DockerHub
-      uses: docker/login-action@v3
-      with:
+      # 1️⃣ Checkout
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Generate image tag (ONCE)
+      - name: Set image tag
+        id: vars
+        run: echo "TAG=$(date +%s)" >> $GITHUB_OUTPUT
+
+      # 3️⃣ Login to DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Install Trivy
-      run: |
+
+      # 4️⃣ Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f django_site/Dockerfile \
+            -t jksaom777/pythonsite:${{ steps.vars.outputs.TAG }} .
+
+      # 5️⃣ Install Trivy
+      - name: Install Trivy
+        run: |
           sudo apt-get update
           sudo apt-get install -y wget gnupg lsb-release
           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
@@ -29,4 +43,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y trivy
 
-          
+      # 6️⃣ Scan image with Trivy
+      - name: Trivy Scan
+        run: |
+          trivy image \
+            --severity HIGH,CRITICAL \
+            --no-progress \
+            jksaom777/pythonsite:${{ steps.vars.outputs.TAG }}
+
+      # 7️⃣ Push image
+      - name: Push Docker image
+        run: |
+          docker push jksaom777/pythonsite:${{ steps.vars.outputs.TAG }}
